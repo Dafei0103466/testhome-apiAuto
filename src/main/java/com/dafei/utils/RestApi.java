@@ -22,9 +22,9 @@ public class RestApi {
                 given() .queryParam("access_token", token)
                         .contentType(ContentType.JSON)
                         .body(requestBody).
-                        when().
+                        when().log().all().
                             post(url).
-                        then().
+                        then().log().all().
                         extract()
                             .response();
         log.info("服务端返回报文------------->\n"+josnFormat(response.body().print()));
@@ -35,9 +35,9 @@ public class RestApi {
         Response response =
                 given().
                         queryParam("access_token",token).
-                        when().
+                        when().log().all().
                         get(url).
-                        then().
+                        then().log().all().
                         extract().
                         response();
         log.info("服务端返回报文------------->\n"+josnFormat(response.body().print()));

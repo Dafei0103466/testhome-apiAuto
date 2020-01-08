@@ -1,0 +1,26 @@
+#创建用户yml数据保存为一个Map
+-
+  external_profile.external_attr.2.miniprogram.title: testProject #jsonPath语法操作更新
+  external_profile.external_corp_name:
+  mobile:
+  avatar_mediaid:
+  department_id:
+    - 2
+    - 3
+  name: ymlCreateOne
+-
+  external_profile.external_attr.2.miniprogram.title: testProject2
+  external_profile.external_corp_name:
+  mobile:
+  avatar_mediaid:
+  department_id:
+    - 2
+    - 3
+  name: YmlautoCreate
+  address: 可以变参数的传递
+  is_leader_in_dept:
+    - 1
+    - 0
+  extattr.attrs.*.name: xpath语法支持
+
+

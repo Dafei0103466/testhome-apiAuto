@@ -1,0 +1,30 @@
+#host: https://qyapi.weixin.qq.com
+interfaces:
+  create: #创建成员接口
+    method: post
+    host: ${host}
+    url: /cgi-bin/user/create
+    query:
+      access_token: ${access_token}
+    header:
+      Content-Type: application/json; charset=UTF-8
+    postBody: {}
+#    requestRaw: ${requestRaw} #请求体补充
+  simplelist: ##指定接口名称
+    method: get
+    host: ${host}
+    url: /cgi-bin/user/simplelist
+    query:
+      access_token: ${access_token}
+      department_id : ${department_id}
+      fetch_child: 0 #1-递归获取，0-只获取本部门 非必填
+  batchdelete: #批量删除成员接口
+    method: post
+    host: ${host}
+    url: /cgi-bin/user/batchdelete
+    query:
+      access_token: ${access_token}
+    header:
+      Content-Type: application/json; charset=UTF-8
+#    requestRaw: ${requestRaw}
+
