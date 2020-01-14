@@ -1,9 +1,7 @@
 package com.dafei.junit.user;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.dafei.api.UserApi;
-import com.dafei.junit.junit5BaseTest;
+import com.dafei.junit.Junit5BaseTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -16,25 +14,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
 @Slf4j
-public class UserTest extends junit5BaseTest {
+public class UserTest extends Junit5BaseTest {
     @Autowired
     UserApi pOuserApi;
     public ArrayList userList = new ArrayList();
     @Test
     void getSimpleListTest() throws Exception {
-        pOuserApi.simplelist(2).then().body("errcode",equalTo(0));
+        pOuserApi.simplelist(2).then().body(matchesJsonSchemaInClasspath("com/dafei/api/testcase/schema_demo.json"));
     }
     @Order(2)
     @Test

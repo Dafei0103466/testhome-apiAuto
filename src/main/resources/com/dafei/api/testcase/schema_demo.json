@@ -1,0 +1,85 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "errcode",
+    "errmsg",
+    "userlist"
+  ],
+  "properties": {
+    "errcode": {
+      "$id": "#/properties/errcode",
+      "type": "integer",
+      "title": "The Errcode Schema",
+      "default": 0,
+      "examples": [
+        0
+      ]
+    },
+    "errmsg": {
+      "$id": "#/properties/errmsg",
+      "type": "string",
+      "title": "The Errmsg Schema",
+      "default": "",
+      "examples": [
+        "ok"
+      ],
+      "pattern": "^ok$"
+    },
+    "userlist": {
+      "$id": "#/properties/userlist",
+      "type": "array",
+      "title": "The Userlist Schema",
+      "items": {
+        "$id": "#/properties/userlist/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "userid",
+          "name",
+          "department"
+        ],
+        "properties": {
+          "userid": {
+            "$id": "#/properties/userlist/items/properties/userid",
+            "type": "string",
+            "title": "The Userid Schema",
+            "default": "",
+            "examples": [
+              "zhangsan"
+            ],
+            "pattern": "^[a-z0-9A-Z]+$"
+          },
+          "name": {
+            "$id": "#/properties/userlist/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "default": "",
+            "examples": [
+              "张三"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "department": {
+            "$id": "#/properties/userlist/items/properties/department",
+            "type": "array",
+            "title": "The Department Schema",
+            "items": {
+              "$id": "#/properties/userlist/items/properties/department/items",
+              "type": "integer",
+              "title": "The Items Schema",
+              "default": 0,
+              "examples": [
+                1,
+                2
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

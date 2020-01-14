@@ -19,7 +19,7 @@ public class MemberTest extends BaseTest {
     @Test(description = "创建成员",dependsOnMethods = {"deleteMemberTest"})
     public void createTest(){
         JSONObject jsonObject =  dataGenerator.getTemplateData(ApiTemplateEnum.CREATE_MEMBER.getId());//10018是创建用户模板数据
-        JSONPath.set(jsonObject,"$.department", Arrays.asList(new int[] { 2,3 }));
+        JSONPath.set(jsonObject,"$.department", Arrays.asList(new int[] { 4,3 }));
         JSONPath.set(jsonObject,"$.external_profile.external_attr.2.miniprogram.title","文档第一个坑");//
         JSONPath.set(jsonObject,"$.userid","autoCreate");
         JSONPath.set(jsonObject,"$.mobile",18012345678L);//电话号码不能重复

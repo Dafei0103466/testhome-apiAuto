@@ -17,7 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest(classes = {Config.class})
 @ExtendWith(SpringExtension.class)
 
-public class junit5BaseTest {
+public class Junit5BaseTest {
 
     @Autowired
     private Config config;

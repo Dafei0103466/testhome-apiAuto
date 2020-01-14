@@ -5,17 +5,19 @@
   mobile:
   avatar_mediaid:
   department_id:
-    - 2
     - 3
+    - 4
   name: ymlCreateOne
+  is_leader_in_dept:
+    - 1
+    - 0
 -
   external_profile.external_attr.2.miniprogram.title: testProject2
   external_profile.external_corp_name:
   mobile:
   avatar_mediaid:
   department_id:
-    - 2
-    - 3
+    - 4
   name: YmlautoCreate
   address: 可以变参数的传递
   is_leader_in_dept:
