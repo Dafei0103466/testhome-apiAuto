@@ -13,6 +13,8 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.jupiter.version>5.5.2</junit.jupiter.version>
+        <aspectj.version>1.8.10</aspectj.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     </properties>
 
@@ -67,23 +69,18 @@
             <artifactId>lombok</artifactId>
             <version>1.18.10</version>
         </dependency>
-
-<!--        <dependency>-->
-<!--            <groupId>log4j</groupId>-->
-<!--            <artifactId>log4j</artifactId>-->
-<!--            <version>1.2.17</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.slf4j</groupId>-->
-<!--            <artifactId>slf4j-api</artifactId>-->
-<!--            <version>1.7.25</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--        <groupId>org.slf4j</groupId>-->
-<!--        <artifactId>slf4j-log4j12</artifactId>-->
-<!--        <version>1.7.25</version>-->
-<!--        <scope>test</scope>-->
-<!--        </dependency>-->
+        <!-- allure报告-->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.12.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jackson-databind</artifactId>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
@@ -188,13 +185,13 @@
             <version>2.3.3</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>json-schema-validator</artifactId>
             <version>4.1.1</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock -->
         <dependency>
@@ -214,8 +211,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.0.0</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
     <repositories>
@@ -232,4 +233,45 @@
             </snapshots>
         </repository>
     </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20</version>
+                <configuration>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testNg.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+                    <!--生成allure-result的目录-->
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>./target/allure-results</value>
+                        </property>
+                    </systemProperties>
+
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
 </project>
