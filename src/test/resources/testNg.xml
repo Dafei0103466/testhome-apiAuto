@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite-dafei" parallel="classes" thread-count="1">
+    <test verbose="2" preserve-order="true" name="TestDafeiDebug">
+        <parameter name="driverName" value="chrome" />
+        <classes>
+            <class name="com.dafei.test.member.MemberTest" />
+        </classes>
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

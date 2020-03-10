@@ -6,17 +6,25 @@ import com.dafei.api.Member;
 import com.dafei.enums.ApiTemplateEnum;
 import com.dafei.test.BaseTest;
 import com.dafei.utils.DataGenerator;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
 
+@Epic("member create")
+@Feature("create dafei")
 public class MemberTest extends BaseTest {
     @Autowired
     Member member;
     @Autowired
     DataGenerator dataGenerator;
     @Test(description = "创建成员",dependsOnMethods = {"deleteMemberTest"})
+    @Story("right pwd create")
+    @Description("create test use right pwd")
     public void createTest(){
         JSONObject jsonObject =  dataGenerator.getTemplateData(ApiTemplateEnum.CREATE_MEMBER.getId());//10018是创建用户模板数据
         JSONPath.set(jsonObject,"$.department", Arrays.asList(new int[] { 4,3 }));

@@ -3,6 +3,7 @@ package com.dafei.api;
 import com.alibaba.fastjson.JSONObject;
 import com.dafei.conf.Config;
 import com.dafei.utils.RestApi;
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ public class Member {
     private Config config;
     @Autowired
     private RestApi restApi;
+    @Step("create step")
     public void create(JSONObject prams){
         Response response= restApi.restPost(config.getHost()+"/cgi-bin/user/create",config.getToken(),prams);
         response.then().assertThat().body("errcode",equalTo(0));

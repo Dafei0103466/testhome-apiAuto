@@ -1,9 +1,11 @@
 package com.dafei.test;
 
+import junit.framework.TestListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Listeners;
 
 
 @ContextConfiguration(classes={com.dafei.conf.Config.class})
